@@ -30,11 +30,7 @@ input_grid3 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],  # Row 6: "........."
     [0, 0, 0, 0, 0, 0, 0, 0, 0],  # Row 7: "........."
     [0, 0, 0, 0, 0, 0, 0, 0, 0],  # Row 8: "........."
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],  
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],  
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],   
-]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 input_grid4 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 2],  # Row 1: "........2"
@@ -81,6 +77,8 @@ def apply_cross_hatching(grid):
                     r, c = possible_positions[0]
                     grid[r][c] = num
                     changes = True
+    if len(possible_positions) == 0:
+        return 'ERROR'
     return changes
 
 # Function to check if the grid is valid
@@ -109,7 +107,7 @@ def solve_sudoku(grid):
     return grid
 
 # Solve the Sudoku and print the result
-solution = solve_sudoku(input_grid4)
+solution = solve_sudoku(input_grid3)
 if solution == "ERROR":
     print("ERROR")
 else:
