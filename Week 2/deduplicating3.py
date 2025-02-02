@@ -1,3 +1,4 @@
+#Submitted
 while True:
     n = int(input().strip())
     if n == 0:
