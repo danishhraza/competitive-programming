@@ -1,1 +1,49 @@
-w
+def prefixSum(array):
+    if not array:
+        return []
+
+    prefix_sum = [0] * len(array)
+    difference = [0] * len(prefix_sum)
+
+    prefix_sum[0] = array[0]
+    difference[0] = 47 - prefix_sum[0]
+
+    count = 0
+    prefix_sum_map = {prefix_sum[0]: 1}
+
+    if difference[0] == 0:
+        count += 1
+
+    for i in range(1, len(array)):
+        prefix_sum[i] = array[i] + prefix_sum[i - 1]
+        difference[i] = 47 - prefix_sum[i]
+
+        if difference[i] == 0:
+            count += 1
+
+        if -difference[i] in prefix_sum_map:
+            count += prefix_sum_map[-difference[i]]
+
+        if prefix_sum[i] in prefix_sum_map:
+            prefix_sum_map[prefix_sum[i]] += 1
+        else:
+            prefix_sum_map[prefix_sum[i]] = 1
+
+    print(prefix_sum)
+    print(difference)
+    print(count)
+    return prefix_sum, difference, count
+
+
+num_cases = int(input())
+
+for _ in range(num_cases):
+    _input = input()
+    if _input == '\n':
+        continue
+    seq_length = int(input())
+    seq = input().strip().split()
+    if len(seq) > seq_length:
+        break
+    seq = list(map(int, seq))
+    prefix_sum, difference, count = prefixSum(seq)
