@@ -6,18 +6,23 @@ def manhattan_distance(cord1, cord2):
 def process_map(map):
 
     distance = [0] * len(map)
+    
+    current_cord = map[0]
 
-    for i in range(len(map)):
+    for i in range(map[current_cord:]):
         if i == 0:
             distance[0] == 0
         else:
-            cord1 = map[i]
-            cord2 = map[i-1]
-            distance[i] = manhattan_distance(cord1, cord2)
+            if map[i] != current_cord:
+                cord1 = current_cord
+                cord2 = map[i]
+                distance[i] = manhattan_distance(cord1, cord2)
 
-            if distance[i] > 1000:
-                return "sad"
+                if distance[i] <= 1000:
+                    current_cord = map[i]
     
+            
+    print(distance)
     return "happy"
 
 
